@@ -1,0 +1,12 @@
+<form onsubmit="" class="border p-3">
+    <div class="form-group">
+        <label for="email">Email address:</label>
+        <input class="form-control" type="email" name="email" placeholder="email" [(ngModel)]="email">
+    </div>
+    <div class="form-group">
+        <a routerLink="/signup" class="text-primary" >No account ? Signup !</a>
+    </div>
+    <div class="form-group text-center">
+        <a class="btn btn-success" (click)="login()">Login</a>
+    </div>
+</form> 

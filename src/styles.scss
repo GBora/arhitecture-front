@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+form {
+    max-width: 17rem;
+    margin: 0 auto;
+    border-radius: 2rem;
+
+    a {
+        color: #fff !important;
+    }
+}

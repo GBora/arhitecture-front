@@ -1,0 +1,9 @@
+<div class="row pl-5 pt-3">
+    <input id="typeahead-basic"
+           type="text"
+           class="form-control"
+           (selectItem)="add($event)"
+           [(ngModel)]="model"
+           [resultFormatter]="resultFormatBandListValue"
+           [ngbTypeahead]="search"/>
+</div>

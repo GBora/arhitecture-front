@@ -1,0 +1,10 @@
+<div class="row">
+    <div class="col-1">
+        <div class="friend-avatar" (click)="search()">
+            +
+        </div>
+    </div>
+    <div class="col-11">
+        <app-friend-search *ngIf="this.showSearch" (newFriend)="this.addedFriend($event)"></app-friend-search>
+    </div>
+</div>

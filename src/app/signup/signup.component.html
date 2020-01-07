@@ -1,0 +1,20 @@
+<form onsubmit="" class="border p-3">
+    <div class="form-group">
+        <label for="email">Email address:</label>
+        <input class="form-control" type="email" name="email" placeholder="Email" [(ngModel)]="email">
+    </div>
+    <div class="form-group">
+        <label for="first">First Name:</label>
+        <input class="form-control" type="text" name="first" placeholder="First Name" [(ngModel)]="firstName">
+    </div>
+    <div class="form-group">
+        <label for="last">Last Name:</label>
+        <input class="form-control" type="text" name="last" placeholder="Last Name" [(ngModel)]="lastName">
+    </div>
+    <div class="form-group">
+        <a routerLink="/login" class="text-primary">Have an account ? Login !</a>
+    </div>
+    <div class="form-group text-center">
+        <a class="btn btn-success" (click)="signup()">Submit</a>
+    </div>
+</form> 
