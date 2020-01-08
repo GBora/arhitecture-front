@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-  // private base = 'http://localhost:3000';
+  // private base = 'http://localhost:8080';
   private base = 'https://guarded-eyrie-20015.herokuapp.com';
   private currentUser: string;
 
