@@ -10,15 +10,18 @@ import { UserService } from '../services/user/user.service';
 export class ConversationComponent implements OnInit {
 
   public showSearch = false;
+  public showThread = false;
   public friends: IUser[] = [];
   private userService: UserService;
 
-  constructor(userService: UserService) { 
+  constructor(userService: UserService) {
     this.userService = userService;
   }
 
   ngOnInit() {
-    this.friends = [];
+    this.userService.getFriends().subscribe((el: any) => {
+      this.friends = el;
+    });
   }
 
   search() {
@@ -30,6 +33,10 @@ export class ConversationComponent implements OnInit {
     this.userService.addFriend(friend.email).then((res: any) => {
       this.friends.push(friend);
     });
+  }
+
+  startConv() {
+    this.showThread = true;
   }
 
 }

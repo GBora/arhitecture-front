@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { UserService } from './services/user/user.service';
 import { ConversationComponent } from './conversation/conversation.component';
 import { FriendSearchComponent } from './friend-search/friend-search.component';
+import { MessageThreadComponent } from './message-thread/message-thread.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FriendSearchComponent } from './friend-search/friend-search.component';
     SignupComponent,
     LoginComponent,
     ConversationComponent,
-    FriendSearchComponent
+    FriendSearchComponent,
+    MessageThreadComponent
   ],
   imports: [
     BrowserModule,

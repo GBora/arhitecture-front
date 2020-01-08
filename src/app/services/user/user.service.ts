@@ -49,13 +49,36 @@ export class UserService {
     };
     const request = {
       email1: email1,
-      email2: this.currentUser
+      email2: this.getCurrentUser()
     };
     return this.http.post(url, request, httpOptions).toPromise();
   }
 
+  public getFriends(): Observable<any> {
+    const url = this.base + '/users/get-friends';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Response-Type': 'text'
+      })
+    };
+    const request = {
+      email: this.getCurrentUser()
+    };
+    return this.http.post(url, request, httpOptions);
+  }
+
   public setCurentUser(email: string): void {
     this.currentUser = email;
+    localStorage.setItem('user', email);
+  }
+
+  public getCurrentUser(): string {
+    if (this.currentUser) {
+      return this.currentUser;
+    } else {
+      return localStorage.getItem('user');
+    }
   }
 
 }
