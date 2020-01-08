@@ -39,6 +39,21 @@ export class UserService {
     return this.http.post(url, request, httpOptions);
   }
 
+  public addFriend(email1: string): Promise<any> {
+    const url = this.base + '/users/add-friend';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Response-Type': 'text'
+      })
+    };
+    const request = {
+      email1: email1,
+      email2: this.currentUser
+    };
+    return this.http.post(url, request, httpOptions).toPromise();
+  }
+
   public setCurentUser(email: string): void {
     this.currentUser = email;
   }
