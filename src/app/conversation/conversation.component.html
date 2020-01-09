@@ -9,7 +9,9 @@
         </div>
     </div>
     <div class="col-11">
-        <app-message-thread *ngIf="this.showThread"></app-message-thread>
-        <app-friend-search *ngIf="this.showSearch" (newFriend)="this.addedFriend($event)"></app-friend-search>
+        <div class="p-5">
+            <app-message-thread *ngIf="this.showThread"></app-message-thread>
+            <app-friend-search *ngIf="this.showSearch" (newFriend)="this.addedFriend($event)"></app-friend-search>
+        </div>
     </div>
 </div>

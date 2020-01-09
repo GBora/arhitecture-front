@@ -48,7 +48,7 @@ export class UserService {
       })
     };
     const request = {
-      email1: email1,
+      email1,
       email2: this.getCurrentUser()
     };
     return this.http.post(url, request, httpOptions).toPromise();

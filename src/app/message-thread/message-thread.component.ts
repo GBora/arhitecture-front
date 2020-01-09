@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessageThreadComponent implements OnInit {
 
+  public replies: string[] = [];
+  public currentReply = '';
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public reply(event: any) {
+    if (event.code === 'Enter') {
+      this.replies.push(this.currentReply);
+      this.currentReply = '';
+    }
   }
 
 }

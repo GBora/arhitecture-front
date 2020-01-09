@@ -1,1 +1,19 @@
-<p>message-thread works!</p>
+
+<div>
+    <div *ngIf="replies.length" class="pl-3">
+        <p *ngFor="let reply of replies">
+            {{ reply }}
+        </p>
+    </div>
+    <div>
+        <form class="form m-0 p-0">
+            <div class="form-group col-12">
+                <input type="text" 
+                       class="form-control reply-input"
+                       (keyup)="reply($event)"
+                       name="currentReply"
+                       [(ngModel)]="currentReply">
+            </div>
+        </form>
+    </div>
+</div>
