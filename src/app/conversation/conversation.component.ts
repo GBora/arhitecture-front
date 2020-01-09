@@ -13,6 +13,7 @@ export class ConversationComponent implements OnInit {
   public showThread = false;
   public friends: IUser[] = [];
   private userService: UserService;
+  public friendConversing: IUser;
 
   constructor(userService: UserService) {
     this.userService = userService;
@@ -35,7 +36,9 @@ export class ConversationComponent implements OnInit {
     });
   }
 
-  startConv() {
+  startConv(friend: IUser) {
+    this.showThread = false;
+    this.friendConversing = friend;
     this.showThread = true;
   }
 
