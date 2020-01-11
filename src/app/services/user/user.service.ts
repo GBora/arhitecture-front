@@ -40,7 +40,7 @@ export class UserService {
   }
 
   public addFriend(email1: string): Promise<any> {
-    const url = this.base + '/users/add-friend';
+    const url = this.base + '/friendship/add-friend';
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ export class UserService {
   }
 
   public getFriends(): Observable<any> {
-    const url = this.base + '/users/get-friends';
+    const url = this.base + '/friendship/get-friends';
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
