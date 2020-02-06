@@ -13,6 +13,8 @@ import { UserService } from './services/user/user.service';
 import { ConversationComponent } from './conversation/conversation.component';
 import { FriendSearchComponent } from './friend-search/friend-search.component';
 import { MessageThreadComponent } from './message-thread/message-thread.component';
+import { DialogMessageComponent } from './dialog-message/dialog-message.component';
+import { DialogUserAvatarComponent } from './dialog-user-avatar/dialog-user-avatar.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { MessageThreadComponent } from './message-thread/message-thread.componen
     LoginComponent,
     ConversationComponent,
     FriendSearchComponent,
-    MessageThreadComponent
+    MessageThreadComponent,
+    DialogMessageComponent,
+    DialogUserAvatarComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import IUser from '../../models/IUser';
 import { Observable } from 'rxjs';
+import configs from '../../configs/configs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,63 +10,52 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   // private base = 'http://localhost:8080';
-  private base = 'https://guarded-eyrie-20015.herokuapp.com';
+  // private base = 'https://guarded-eyrie-20015.herokuapp.com';
+  private base = configs.baseURL;
   private currentUser: string;
+  private options = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Response-Type': 'text'
+    })
+  };
 
   constructor(private http: HttpClient) { }
 
   public signUpUser(user: IUser): Promise<any> {
     const url = this.base + '/users/new';
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Response-Type': 'text'
-      })
-    };
-    return this.http.post(url, user, httpOptions).toPromise();
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json',
+    //     'Response-Type': 'text'
+    //   })
+    // };
+    return this.http.post(url, user, this.options).toPromise();
   }
 
   public search(email: string): Observable<any> {
     const url = this.base + '/users/search';
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Response-Type': 'text'
-      })
-    };
     const request = {
       email
     };
-    return this.http.post(url, request, httpOptions);
+    return this.http.post(url, request, this.options);
   }
 
   public addFriend(email1: string): Promise<any> {
     const url = this.base + '/friendship/add-friend';
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Response-Type': 'text'
-      })
-    };
     const request = {
       email1,
       email2: this.getCurrentUser()
     };
-    return this.http.post(url, request, httpOptions).toPromise();
+    return this.http.post(url, request, this.options).toPromise();
   }
 
   public getFriends(): Observable<any> {
     const url = this.base + '/friendship/get-friends';
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Response-Type': 'text'
-      })
-    };
     const request = {
       email: this.getCurrentUser()
     };
-    return this.http.post(url, request, httpOptions);
+    return this.http.post(url, request, this.options);
   }
 
   public setCurentUser(email: string): void {

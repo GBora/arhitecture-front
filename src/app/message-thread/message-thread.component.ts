@@ -1,34 +1,47 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import IUser from '../models/IUser';
+import { MessageService } from '../services/messages/message.service';
+import { UserService } from '../services/user/user.service';
+import { IMessage } from '../models/IMessage';
 
 @Component({
   selector: 'app-message-thread',
   templateUrl: './message-thread.component.html',
   styleUrls: ['./message-thread.component.scss']
 })
-export class MessageThreadComponent implements OnInit, OnChanges {
+export class MessageThreadComponent implements OnInit {
 
-  public replies: string[] = [];
+  public messages: IMessage[] = [];
   public currentReply = '';
   @Input() friend: IUser;
+  private messageService: MessageService;
+  private userService: UserService;
 
-  constructor() { }
-
-  ngOnInit() {
-    this.replies = [];
+  constructor(messageService: MessageService, userService: UserService) {
+    this.messageService = messageService;
+    this.userService = userService;
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.friend.previousValue && changes.friend.currentValue.email !== changes.friend.previousValue.email) {
-      this.replies = [];
-      this.currentReply = '';
-    }
+  ngOnInit() {
+    this.messages = [];
+    this.messageService.getConversation(this.userService.getCurrentUser(), this.friend.email).then((res: IMessage[]) => {
+      this.messages = res;
+    });
   }
 
   public reply(event: any) {
     if (event.code === 'Enter') {
-      this.replies.push(this.currentReply);
+      const messageCopy = '' + this.currentReply;
       this.currentReply = '';
+      this.messageService.addMessage({
+        to: this.friend.email,
+        content: messageCopy,
+        from: this.userService.getCurrentUser()
+      }).then(() => {
+        this.messageService.getConversation(this.userService.getCurrentUser(), this.friend.email).then((res: IMessage[]) => {
+          this.messages = res;
+        });
+      });
     }
   }
 
