@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user/user.service';
+import IUser from '../models/IUser';
+import { PubSubService } from 'angular7-pubsub';
 
 @Component({
   selector: 'app-login',
@@ -10,21 +12,23 @@ import { UserService } from '../services/user/user.service';
 export class LoginComponent implements OnInit {
 
   public email: string;
-  private router: Router;
-  private userService: UserService;
 
-  constructor(router: Router, userService: UserService) {
-    this.router = router;
-    this.userService = userService;
-  }
+  constructor(private router: Router,
+              private userService: UserService,
+              private pubsub: PubSubService) {}
 
   ngOnInit() {
     this.email = '';
   }
 
   public login(): void {
-    this.userService.setCurentUser(this.email);
-    this.router.navigate(['/conversation']);
+    this.userService.loginUser(this.email).then((user: IUser) => {
+      this.userService.setCurentUser(user);
+      this.pubsub.$pub('user-change', user);
+      this.router.navigate(['/conversation']);
+    }, (err: any) => {
+      alert('Something went wrong, could not login.');
+    });
   }
 
 }

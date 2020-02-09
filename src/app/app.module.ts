@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { PubSubModule } from 'angular7-pubsub';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,7 +34,8 @@ import { DialogUserAvatarComponent } from './dialog-user-avatar/dialog-user-avat
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    NgbTypeaheadModule
+    NgbTypeaheadModule,
+    PubSubModule.forRoot()
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

@@ -1,5 +1,8 @@
 <nav class="navbar navbar-expand-sm bg-success navbar-light">
   <h3>Guarded Eyrie</h3>
+  <div *ngIf="user.email" class="ml-auto">
+    {{ user.firstName }} {{ user.lastName }}
+  </div>
 </nav>
 
 <div class="container p-5">

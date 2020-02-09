@@ -9,10 +9,8 @@ import configs from '../../configs/configs';
 })
 export class UserService {
 
-  // private base = 'http://localhost:8080';
-  // private base = 'https://guarded-eyrie-20015.herokuapp.com';
   private base = configs.baseURL;
-  private currentUser: string;
+  private currentUser: IUser;
   private options = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -24,13 +22,13 @@ export class UserService {
 
   public signUpUser(user: IUser): Promise<any> {
     const url = this.base + '/users/new';
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type': 'application/json',
-    //     'Response-Type': 'text'
-    //   })
-    // };
     return this.http.post(url, user, this.options).toPromise();
+  }
+
+  public loginUser(email: string): Promise<any> {
+    const url = this.base + '/users/login';
+    const content = { email };
+    return this.http.post(url, content, this.options).toPromise();
   }
 
   public search(email: string): Observable<any> {
@@ -53,21 +51,21 @@ export class UserService {
   public getFriends(): Observable<any> {
     const url = this.base + '/friendship/get-friends';
     const request = {
-      email: this.getCurrentUser()
+      email: this.getCurrentUser().email
     };
     return this.http.post(url, request, this.options);
   }
 
-  public setCurentUser(email: string): void {
-    this.currentUser = email;
-    localStorage.setItem('user', email);
+  public setCurentUser(user: IUser): void {
+    this.currentUser = user;
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
-  public getCurrentUser(): string {
+  public getCurrentUser(): IUser {
     if (this.currentUser) {
       return this.currentUser;
     } else {
-      return localStorage.getItem('user');
+      return JSON.parse(localStorage.getItem('user'));
     }
   }
 
