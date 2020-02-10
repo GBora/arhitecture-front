@@ -9,6 +9,7 @@ import IUser from '../models/IUser';
 export class DialogUserAvatarComponent {
 
   @Input() user: IUser;
+  @Input() isSelf: boolean;
 
   constructor() { }
 

@@ -10,7 +10,28 @@
 	// border-radius: .4em;
 }
 
+.dialog-message.self {
+	position: relative;
+  background: #fff;
+  color: #ccc;
+	// border-radius: .4em;
+}
+
 .dialog-message:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 0.563em solid transparent;
+	border-left-color: #ccc;
+	border-right: 0;
+	margin-top: -0.562em;
+	margin-right: -0.562em;
+}
+
+.dialog-message.self:after {
 	content: '';
 	position: absolute;
 	right: 0;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import IUser from '../models/IUser';
 import { UserService } from '../services/user/user.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-conversation',
@@ -12,16 +13,23 @@ export class ConversationComponent implements OnInit {
   public showSearch = false;
   public showThread = false;
   public friends: IUser[] = [];
-  private userService: UserService;
   public friendConversing: IUser;
 
-  constructor(userService: UserService) {
-    this.userService = userService;
-  }
+  constructor(private userService: UserService,
+              private route: ActivatedRoute,
+              private router: Router) {}
 
   ngOnInit() {
+    const urlEmail = this.route.snapshot.queryParams.email;
     this.userService.getFriends().subscribe((el: any) => {
       this.friends = el;
+      if (urlEmail) {
+        this.friends.forEach((friend: IUser) => {
+          if (friend.email === urlEmail) {
+            this.startConv(friend);
+          }
+        });
+      }
     });
   }
 
@@ -37,6 +45,7 @@ export class ConversationComponent implements OnInit {
   }
 
   startConv(friend: IUser) {
+    this.router.navigate(['/conversation'], { queryParams: { email: friend.email } });
     this.showThread = false;
     this.friendConversing = friend;
     this.showThread = true;

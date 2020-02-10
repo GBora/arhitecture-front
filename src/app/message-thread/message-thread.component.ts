@@ -16,6 +16,7 @@ export class MessageThreadComponent implements OnInit {
   @Input() friend: IUser;
   private messageService: MessageService;
   private userService: UserService;
+  public self: IUser;
 
   constructor(messageService: MessageService, userService: UserService) {
     this.messageService = messageService;
@@ -24,6 +25,7 @@ export class MessageThreadComponent implements OnInit {
 
   ngOnInit() {
     this.messages = [];
+    this.self = this.userService.getCurrentUser();
     this.messageService.getConversation(this.userService.getCurrentUser().email, this.friend.email).then((res: IMessage[]) => {
       this.messages = res;
     });

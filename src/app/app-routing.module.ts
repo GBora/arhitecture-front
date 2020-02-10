@@ -8,7 +8,18 @@ const routes: Routes = [
   { path: '', redirectTo: '/signup', pathMatch: 'full' },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'conversation', component: ConversationComponent }
+  { path: 'conversation',
+    component: ConversationComponent,
+    children: [
+      {
+        path: '',
+        component: ConversationComponent
+      },
+      {
+        path: ':id',
+        component: ConversationComponent
+      }
+    ]}
 ];
 
 @NgModule({

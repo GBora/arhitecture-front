@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 export class DialogMessageComponent {
 
   @Input() content: string;
+  @Input() isSelf: boolean;
 
   constructor() { }
 

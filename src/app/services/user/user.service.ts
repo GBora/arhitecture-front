@@ -61,6 +61,11 @@ export class UserService {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
+  public deleteCurrentUser(): void {
+    this.currentUser = null;
+    localStorage.removeItem('user');
+  }
+
   public getCurrentUser(): IUser {
     if (this.currentUser) {
       return this.currentUser;
