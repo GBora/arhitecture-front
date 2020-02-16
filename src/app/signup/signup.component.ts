@@ -27,6 +27,15 @@ export class SignupComponent implements OnInit {
     this.email = '';
     this.lastName = '';
     this.firstName = '';
+
+    try {
+      const user: IUser = this.userService.getCurrentUser();
+      if (user) {
+        this.router.navigate(['/login']);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   public signup(): void {

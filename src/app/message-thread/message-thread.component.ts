@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import IUser from '../models/IUser';
 import { MessageService } from '../services/messages/message.service';
 import { UserService } from '../services/user/user.service';
 import { IMessage } from '../models/IMessage';
+import configs from '../configs/configs';
 
 @Component({
   selector: 'app-message-thread',
@@ -26,25 +27,40 @@ export class MessageThreadComponent implements OnInit {
   ngOnInit() {
     this.messages = [];
     this.self = this.userService.getCurrentUser();
+
     this.messageService.getConversation(this.userService.getCurrentUser().email, this.friend.email).then((res: IMessage[]) => {
       this.messages = res;
     });
+
+    const evtSource = new EventSource(configs.baseURL + '/messages/conversation-stream');
+
+    evtSource.onmessage = (e) => {
+      console.log('connection message');
+      console.log(e.data);
+    };
+
+    evtSource.onerror = (e) => {
+      console.log('connection error');
+      console.log(e);
+      evtSource.close();
+    };
+
+    evtSource.onopen = (e) => {
+      console.log('connection open');
+      console.log(e);
+    };
   }
 
-  public reply(event: any) {
-    if (event.code === 'Enter') {
-      const messageCopy = '' + this.currentReply;
-      this.currentReply = '';
-      this.messageService.addMessage({
-        to: this.friend.email,
-        content: messageCopy,
-        from: this.userService.getCurrentUser().email
-      }).then(() => {
-        this.messageService.getConversation(this.userService.getCurrentUser().email, this.friend.email).then((res: IMessage[]) => {
-          this.messages = res;
-        });
+  public postReply(message: string) {
+    this.messageService.addMessage({
+      to: this.friend.email,
+      content: message,
+      from: this.userService.getCurrentUser().email
+    }).then(() => {
+      this.messageService.getConversation(this.userService.getCurrentUser().email, this.friend.email).then((res: IMessage[]) => {
+        this.messages = res;
       });
-    }
+    });
   }
 
 }
