@@ -30,8 +30,9 @@ export class SignupComponent implements OnInit {
 
     try {
       const user: IUser = this.userService.getCurrentUser();
+      console.log(user);
       if (user) {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/conversation']);
       }
     } catch (err) {
       console.error(err);
@@ -45,9 +46,7 @@ export class SignupComponent implements OnInit {
       lastName: this.lastName
     };
 
-    console.log(this.userService);
     this.userService.signUpUser(user).then((res: any) => {
-      console.log(res);
       this.router.navigate(['/login']);
     });
   }

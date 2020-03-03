@@ -28,4 +28,4 @@ Run the build command and copy the contents into the BE project in either `src/p
 
 ## Changing the BE url
 
-Do it from `src/app/config`
+Do it from `src/app/config`.

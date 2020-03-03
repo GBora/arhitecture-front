@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+// import * as io from 'socket.io-client';
+
 import IUser from '../models/IUser';
 import { MessageService } from '../services/messages/message.service';
 import { UserService } from '../services/user/user.service';
@@ -12,12 +14,15 @@ import configs from '../configs/configs';
 })
 export class MessageThreadComponent implements OnInit {
 
+  @Input() friend: IUser;
+
   public messages: IMessage[] = [];
   public currentReply = '';
-  @Input() friend: IUser;
+  public myself: IUser;
+
   private messageService: MessageService;
   private userService: UserService;
-  public self: IUser;
+  // private socket;
 
   constructor(messageService: MessageService, userService: UserService) {
     this.messageService = messageService;
@@ -26,29 +31,16 @@ export class MessageThreadComponent implements OnInit {
 
   ngOnInit() {
     this.messages = [];
-    this.self = this.userService.getCurrentUser();
+    this.myself = this.userService.getCurrentUser();
 
     this.messageService.getConversation(this.userService.getCurrentUser().email, this.friend.email).then((res: IMessage[]) => {
       this.messages = res;
     });
 
-    const evtSource = new EventSource(configs.baseURL + '/messages/conversation-stream');
-
-    evtSource.onmessage = (e) => {
-      console.log('connection message');
-      console.log(e.data);
-    };
-
-    evtSource.onerror = (e) => {
-      console.log('connection error');
-      console.log(e);
-      evtSource.close();
-    };
-
-    evtSource.onopen = (e) => {
-      console.log('connection open');
-      console.log(e);
-    };
+    const source = new EventSource(configs.baseURL + '/messages/sse' + '?online=' + this.myself.email);
+    source.addEventListener('message', (msg: any) =>{
+      console.log(msg);
+    });
   }
 
   public postReply(message: string) {
