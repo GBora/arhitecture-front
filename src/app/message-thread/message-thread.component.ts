@@ -6,6 +6,7 @@ import { MessageService } from '../services/messages/message.service';
 import { UserService } from '../services/user/user.service';
 import { IMessage } from '../models/IMessage';
 import configs from '../configs/configs';
+import { liveMapMessage } from '../helpers/liveMapMessage';
 
 @Component({
   selector: 'app-message-thread',
@@ -39,7 +40,10 @@ export class MessageThreadComponent implements OnInit {
 
     const source = new EventSource(configs.baseURL + '/messages/sse' + '?online=' + this.myself.email);
     source.addEventListener('message', (msg: any) =>{
-      console.log(msg);
+      const parsedMessage = JSON.parse(msg.data);
+      if (parsedMessage.from === this.friend.email) {
+        this.messages.push(liveMapMessage(parsedMessage, this.myself, this.friend));
+      }
     });
   }
 
