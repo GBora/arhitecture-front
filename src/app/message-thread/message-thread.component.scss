@@ -6,8 +6,8 @@ form {
   max-width: none !important;
 }
 
-// .messages-list {
-//   max-height: 300px;
-//   overflow-y: auto;
-//   overflow-x: visible;
-// }
+.messages-list {
+  max-height: 50vh;
+  overflow: hidden;
+  overflow-y: scroll;
+}

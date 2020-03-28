@@ -1,6 +1,6 @@
 
 <div>
-    <div *ngIf="messages.length" class="pl-3 messages-list">
+    <div *ngIf="messages.length" class="ml-3 pb-3 messages-list">
         <div *ngFor="let msg of messages" class="row mt-3">
           <div class="col-9">
             <app-dialog-message [content]="msg.content"

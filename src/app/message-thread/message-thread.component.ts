@@ -39,7 +39,7 @@ export class MessageThreadComponent implements OnInit {
     });
 
     const source = new EventSource(configs.baseURL + '/messages/sse' + '?online=' + this.myself.email);
-    source.addEventListener('message', (msg: any) =>{
+    source.addEventListener('message', (msg: any) => {
       const parsedMessage = JSON.parse(msg.data);
       if (parsedMessage.from === this.friend.email) {
         this.messages.push(liveMapMessage(parsedMessage, this.myself, this.friend));
