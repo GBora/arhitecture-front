@@ -1,7 +1,7 @@
 const fs = require('fs-extra')
 
-let be_folder_src = '../architecture_example/src/public';
-let be_folder_dist = '../architecture_example/dist/public';
+let be_folder_src = '../arch-back/src/public';
+let be_folder_dist = '../arch-back/dist/public';
 let fe_source_folder = './dist/architecture-front'
 
 // Remove the old compiled FE

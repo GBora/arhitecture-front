@@ -24,11 +24,12 @@ export class MessageService {
     return this.http.post(url, message, this.options).toPromise();
   }
 
-  public getConversation(user1: string, user2: string): Promise<any> {
+  public getConversation(user1: string, user2: string, count: number): Promise<any> {
     const url = this.base + '/messages/get-conversation';
     const request = {
       user1,
-      user2
+      user2,
+      count
     };
     return this.http.post(url, JSON.stringify(request), this.options).toPromise();
   }

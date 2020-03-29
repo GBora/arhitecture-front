@@ -24,17 +24,25 @@ export class MessageThreadComponent implements OnInit {
   private messageService: MessageService;
   private userService: UserService;
   // private socket;
+  private count: number = 7;
 
   constructor(messageService: MessageService, userService: UserService) {
     this.messageService = messageService;
     this.userService = userService;
   }
 
+  onScrollUp() {
+    this.count = this.count + 1;
+    this.messageService.getConversation(this.userService.getCurrentUser().email, this.friend.email, this.count).then((res: IMessage[]) => {
+      this.messages = res;
+    });
+  }
+
   ngOnInit() {
     this.messages = [];
     this.myself = this.userService.getCurrentUser();
 
-    this.messageService.getConversation(this.userService.getCurrentUser().email, this.friend.email).then((res: IMessage[]) => {
+    this.messageService.getConversation(this.userService.getCurrentUser().email, this.friend.email, this.count).then((res: IMessage[]) => {
       this.messages = res;
     });
 
@@ -53,7 +61,7 @@ export class MessageThreadComponent implements OnInit {
       content: message,
       from: this.userService.getCurrentUser().email
     }).then(() => {
-      this.messageService.getConversation(this.userService.getCurrentUser().email, this.friend.email).then((res: IMessage[]) => {
+      this.messageService.getConversation(this.userService.getCurrentUser().email, this.friend.email, this.count).then((res: IMessage[]) => {
         this.messages = res;
       });
     });

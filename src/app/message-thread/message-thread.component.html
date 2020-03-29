@@ -1,6 +1,13 @@
 
 <div>
-    <div *ngIf="messages.length" class="ml-3 pb-3 messages-list">
+    <div *ngIf="messages.length" 
+         class="ml-3 pb-3 messages-list"
+         infiniteScroll
+         [scrollWindow]="false"
+         [infiniteScrollDistance]="2"
+         [infiniteScrollUpDistance]="1.5"
+         [infiniteScrollThrottle]="50"
+         (scrolledUp)="onScrollUp()">
         <div *ngFor="let msg of messages" class="row mt-3">
           <div class="col-9">
             <app-dialog-message [content]="msg.content"

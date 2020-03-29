@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { PubSubModule } from 'angular7-pubsub';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,7 +38,8 @@ import { DialogFormComponent } from './dialog-form/dialog-form.component';
     FormsModule,
     HttpClientModule,
     NgbTypeaheadModule,
-    PubSubModule.forRoot()
+    PubSubModule.forRoot(),
+    InfiniteScrollModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
