@@ -32,7 +32,7 @@ export class SignupComponent implements OnInit {
       const user: IUser = this.userService.getCurrentUser();
       console.log(user);
       if (user) {
-        this.router.navigate(['/conversation']);
+        this.router.navigate(['/friends-list']);
       }
     } catch (err) {
       console.error(err);

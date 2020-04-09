@@ -18,6 +18,7 @@ import { MessageThreadComponent } from './message-thread/message-thread.componen
 import { DialogMessageComponent } from './dialog-message/dialog-message.component';
 import { DialogUserAvatarComponent } from './dialog-user-avatar/dialog-user-avatar.component';
 import { DialogFormComponent } from './dialog-form/dialog-form.component';
+import { FriendSearchPageComponent } from './friend-search-page/friend-search-page.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { DialogFormComponent } from './dialog-form/dialog-form.component';
     MessageThreadComponent,
     DialogMessageComponent,
     DialogUserAvatarComponent,
-    DialogFormComponent
+    DialogFormComponent,
+    FriendSearchPageComponent
   ],
   imports: [
     BrowserModule,

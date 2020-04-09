@@ -33,10 +33,6 @@ export class ConversationComponent implements OnInit {
     });
   }
 
-  search() {
-    this.showSearch = true;
-  }
-
   addedFriend(friend: IUser) {
     this.showSearch = false;
     this.userService.addFriend(friend.email).then((res: any) => {
