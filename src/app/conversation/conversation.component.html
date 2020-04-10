@@ -1,17 +1,10 @@
 <div class="row">
-    <div class="col-1">
-        <div class="plus-avatar" (click)="search()">
-            +
+    <div class="col-12">
+        <div class="p-3 text-center">
+          Want more friends ? Try <a routerLink="/friends-search">searching</a> for people you might know.
         </div>
-
         <div class="friend-avatar mt-3" *ngFor="let friend of friends" (click)="startConv(friend)">
             {{ friend.firstName.slice(0,1)}} {{friend.lastName.slice(0, 1)}}
-        </div>
-    </div>
-    <div class="col-11">
-        <div class="p-5">
-            <app-message-thread *ngIf="this.showThread" [friend]="friendConversing"></app-message-thread>
-            <app-friend-search *ngIf="this.showSearch" (newFriend)="this.addedFriend($event)"></app-friend-search>
         </div>
     </div>
 </div>

@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       this.userService.setCurentUser(user);
       // this.sse.initiateConnection(user.email);
       this.pubsub.$pub('user-change', user);
-      this.router.navigate(['/conversation']);
+      this.router.navigate(['/friends-list']);
     }, (err: any) => {
       alert('Something went wrong, could not login.');
     });

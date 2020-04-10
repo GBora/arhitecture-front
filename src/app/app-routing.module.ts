@@ -3,23 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { ConversationComponent } from './conversation/conversation.component';
+import { FriendSearchPageComponent } from './friend-search-page/friend-search-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/signup', pathMatch: 'full' },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'conversation',
-    component: ConversationComponent,
-    children: [
-      {
-        path: '',
-        component: ConversationComponent
-      },
-      {
-        path: ':id',
-        component: ConversationComponent
-      }
-    ]}
+  { path: 'friends-list', component: ConversationComponent },
+  { path: 'friends-search', component: FriendSearchPageComponent }
 ];
 
 @NgModule({
