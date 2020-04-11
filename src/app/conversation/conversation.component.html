@@ -1,10 +1,18 @@
-<div class="row">
-    <div class="col-12">
-        <div class="p-3 text-center">
-          Want more friends ? Try <a routerLink="/friends-search">searching</a> for people you might know.
+<div>
+    <div class="row">
+        <div class="col-12">
+            <div class="p-3 text-center">
+                Want more friends ? Try <a routerLink="/friends-search">searching</a> for people you might know.
+            </div>
         </div>
-        <div class="friend-avatar mt-3" *ngFor="let friend of friends" (click)="startConv(friend)">
-            {{ friend.firstName.slice(0,1)}} {{friend.lastName.slice(0, 1)}}
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="friend-avatar col-3" 
+                *ngFor="let friend of friends"
+                routerLink="/friend-dialog/{{ friend.email }}">
+                {{ friend.firstName.slice(0,1)}} {{friend.lastName.slice(0, 1)}}
+            </div>
         </div>
     </div>
 </div>
