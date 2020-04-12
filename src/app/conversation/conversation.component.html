@@ -7,12 +7,10 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
-            <div class="friend-avatar col-3" 
-                *ngFor="let friend of friends"
-                routerLink="/friend-dialog/{{ friend.email }}">
-                {{ friend.firstName.slice(0,1)}} {{friend.lastName.slice(0, 1)}}
-            </div>
+        <div class="friend-avatar col-1 m-1"
+            *ngFor="let friend of friends"
+            routerLink="/friend-dialog/{{ friend.email }}">
+            {{ friend.firstName.slice(0,1)}} {{friend.lastName.slice(0, 1)}}
         </div>
     </div>
 </div>

@@ -43,7 +43,7 @@ export class UserService {
     const url = this.base + '/friendship/add-friend';
     const request = {
       email1,
-      email2: this.getCurrentUser()
+      email2: this.getCurrentUser().email
     };
     return this.http.post(url, request, this.options).toPromise();
   }
