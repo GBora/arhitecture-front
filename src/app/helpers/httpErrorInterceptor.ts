@@ -8,7 +8,9 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import * as toastr from 'toastr';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
