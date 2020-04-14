@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../services/user/user.service';
-import IUser from '../models/IUser';
+import { UserService } from '../../services/user/user.service';
+import IUser from '../../models/IUser';
 import { PubSubService } from 'angular7-pubsub';
-import { SSEService } from '../services/sse/sse.service';
+import { SSEService } from '../../services/sse/sse.service';
 
 @Component({
   selector: 'app-login',
@@ -29,8 +29,6 @@ export class LoginComponent implements OnInit {
       // this.sse.initiateConnection(user.email);
       this.pubsub.$pub('user-change', user);
       this.router.navigate(['/friends-list']);
-    }, (err: any) => {
-      alert('Something went wrong, could not login.');
     });
   }
 

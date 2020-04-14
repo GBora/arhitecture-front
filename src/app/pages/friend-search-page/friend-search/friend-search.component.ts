@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { UserService } from '../services/user/user.service';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-friend-search',

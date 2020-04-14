@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SignupComponent } from './signup/signup.component';
-import { LoginComponent } from './login/login.component';
-import { ConversationComponent } from './conversation/conversation.component';
-import { FriendSearchPageComponent } from './friend-search-page/friend-search-page.component';
-import { FriendDialogPageComponent } from './friend-dialog-page/friend-dialog-page.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import { LoginComponent } from './pages/login/login.component';
+import { ConversationComponent } from './pages/friend-list-page/conversation.component';
+import { FriendSearchPageComponent } from './pages/friend-search-page/friend-search-page.component';
+import { FriendDialogPageComponent } from './pages/friend-dialog-page/friend-dialog-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/signup', pathMatch: 'full' },

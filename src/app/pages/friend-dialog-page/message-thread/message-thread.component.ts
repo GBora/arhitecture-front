@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 // import * as io from 'socket.io-client';
 
-import IUser from '../models/IUser';
-import { MessageService } from '../services/messages/message.service';
-import { UserService } from '../services/user/user.service';
-import { IMessage } from '../models/IMessage';
-import configs from '../configs/configs';
-import { liveMapMessage } from '../helpers/liveMapMessage';
+import IUser from '../../../models/IUser';
+import { MessageService } from '../../../services/messages/message.service';
+import { UserService } from '../../../services/user/user.service';
+import { IMessage } from '../../../models/IMessage';
+import configs from '../../../configs/configs';
+import { liveMapMessage } from '../../../helpers/liveMapMessage';
 
 @Component({
   selector: 'app-message-thread',

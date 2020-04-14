@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from '../services/user/user.service';
-import IUser from '../models/IUser';
+import { UserService } from '../../services/user/user.service';
+import IUser from '../../models/IUser';
 
 @Component({
   selector: 'app-friend-dialog-page',
