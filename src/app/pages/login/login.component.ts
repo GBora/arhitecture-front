@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user/user.service';
 import IUser from '../../models/IUser';
-import { PubSubService } from 'angular7-pubsub';
 import { SSEService } from '../../services/sse/sse.service';
+import {NgxPubSubService} from "@pscoped/ngx-pub-sub";
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
               private userService: UserService,
-              private pubsub: PubSubService,
+              private pubsub: NgxPubSubService,
               private sse: SSEService) {}
 
   ngOnInit() {
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.userService.loginUser(this.email).then((user: IUser) => {
       this.userService.setCurentUser(user);
       // this.sse.initiateConnection(user.email);
-      this.pubsub.$pub('user-change', user);
+      this.pubsub.publishEvent('user-change', user);
       this.router.navigate(['/friends-list']);
     });
   }
