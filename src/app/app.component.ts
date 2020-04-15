@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import IUser from './models/IUser';
 import { UserService } from './services/user/user.service';
-import { PubSubService } from 'angular7-pubsub';
 import { Router } from '@angular/router';
+import {NgxPubSubService} from "@pscoped/ngx-pub-sub";
 
 @Component({
   selector: 'app-root',
@@ -16,14 +16,14 @@ export class AppComponent implements OnInit, OnDestroy {
   private userSub;
 
   constructor(private userService: UserService,
-              private pubsub: PubSubService,
+              private pubsub: NgxPubSubService,
               private router: Router) {}
 
   ngOnInit(): void {
     this.user = this.userService.getCurrentUser();
 
-    this.userSub = this.pubsub.$sub('user-change').subscribe((event: any) => {
-        this.user = event;
+    this.userSub = this.pubsub.subscribe('user-change', (event: any) => {
+      this.user = event;
     });
   }
 

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import IUser from '../models/IUser';
+import IUser from '../../../models/IUser';
 
 @Component({
   selector: 'app-dialog-user-avatar',

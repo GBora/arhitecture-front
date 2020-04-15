@@ -130,5 +130,8 @@
       }
     }
   },
-  "defaultProject": "architecture-front"
+  "defaultProject": "architecture-front",
+  "cli": {
+    "analytics": "09edc49f-027a-4c83-b58e-19b401e19b91"
+  }
 }
